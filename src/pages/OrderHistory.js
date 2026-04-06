@@ -63,6 +63,16 @@ const OrderHistory = () => {
                 <span className="history-date">{new Date(order.createdAt).toLocaleDateString()}</span>
                 <span className="history-total">${order.totalAmount.toFixed(2)}</span>
               </div>
+
+              {/* Track Order Button */}
+              {!['delivered', 'cancelled'].includes(order.status) && (
+                <button
+                  className="btn-track"
+                  onClick={() => navigate(`/order-confirmation/${order._id}?success=true`)}
+                >
+                  📡 Track Order
+                </button>
+              )}
             </div>
           ))}
         </div>
