@@ -1,0 +1,134 @@
+.auth-page {
+  min-height: 100vh;
+  background: #f7f4ef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.auth-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.auth-logo { font-size: 3rem; margin-bottom: 0.5rem; }
+
+.auth-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #1a1a2e;
+  margin-bottom: 4px;
+}
+
+.auth-sub {
+  font-family: 'Lato', sans-serif;
+  color: #888;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.auth-tabs {
+  display: flex;
+  background: #f7f4ef;
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 9px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: #888;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.auth-tab.active {
+  background: white;
+  color: #1a1a2e;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.auth-form { text-align: left; }
+
+.auth-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 1rem;
+}
+
+.auth-input-wrap label {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #555;
+}
+
+.auth-input-wrap input {
+  padding: 11px 14px;
+  border: 2px solid #e8e8e8;
+  border-radius: 10px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  color: #1a1a2e;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.auth-input-wrap input:focus { border-color: #f4c542; }
+
+.auth-error {
+  color: #e74c3c;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+
+.auth-submit {
+  width: 100%;
+  padding: 13px;
+  background: #f4c542;
+  color: #1a1a2e;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 0.5rem;
+}
+
+.auth-submit:hover:not(:disabled) { background: #e0b230; transform: scale(1.01); }
+.auth-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.auth-switch {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.88rem;
+  color: #888;
+  margin-top: 1.2rem;
+}
+
+.auth-switch-btn {
+  background: none;
+  border: none;
+  color: #1a1a2e;
+  font-weight: 700;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.88rem;
+  cursor: pointer;
+  text-decoration: underline;
+}

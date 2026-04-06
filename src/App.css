@@ -1,38 +1,57 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@400;700;900&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body[data-theme='dark'] {
+  --bg: #1a1a2e;
+  --surface: #16213e;
+  --surface2: #0f3460;
+  --border: #2a2f45;
+  --text: #e8eaf0;
+  --text2: #8b90a7;
+  --accent: #f4c542;
+  --accent-hover: #e0b230;
+  --card-bg: #1e2a45;
+  --navbar-bg: #0f1117;
+  --input-bg: #16213e;
+  --shadow: rgba(0, 0, 0, 0.4);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body[data-theme='light'] {
+  --bg: #f7f4ef;
+  --surface: #ffffff;
+  --surface2: #f0ebe3;
+  --border: #e0d9cf;
+  --text: #1a1a2e;
+  --text2: #666677;
+  --accent: #f4c542;
+  --accent-hover: #e0b230;
+  --card-bg: #ffffff;
+  --navbar-bg: #1a1a2e;
+  --input-bg: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.08);
 }
 
-.App-header {
-  background-color: #282c34;
+body {
+  font-family: 'Lato', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease, color 0.3s ease;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button {
+  cursor: pointer;
 }

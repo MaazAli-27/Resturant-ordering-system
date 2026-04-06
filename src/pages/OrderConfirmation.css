@@ -1,0 +1,113 @@
+.confirm-page {
+  min-height: 100vh;
+  background: #f7f4ef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.confirm-card {
+  background: white;
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+}
+
+.confirm-icon { font-size: 4rem; margin-bottom: 1rem; }
+
+.confirm-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #1a1a2e;
+  margin: 0 0 0.5rem;
+}
+
+.confirm-sub {
+  font-family: 'Lato', sans-serif;
+  color: #888;
+  margin: 0 0 2rem;
+}
+
+.order-details {
+  background: #f7f4ef;
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  color: #555;
+  padding: 7px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.detail-val { font-weight: 700; color: #1a1a2e; }
+
+.status-badge {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 20px;
+  text-transform: capitalize;
+  background: #27ae60;
+  color: white;
+}
+
+.status-badge.pending { background: #f39c12; }
+.status-badge.confirmed { background: #27ae60; }
+.status-badge.preparing { background: #2980b9; }
+.status-badge.cancelled { background: #e74c3c; }
+
+.order-items-list { margin-top: 1rem; }
+
+.order-items-list h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: #1a1a2e;
+  margin: 0 0 0.5rem;
+}
+
+.ordered-item {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.88rem;
+  color: #666;
+  padding: 4px 0;
+}
+
+.btn-home {
+  width: 100%;
+  padding: 13px;
+  background: #1a1a2e;
+  color: #f4c542;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-home:hover { background: #2d2d4e; }
+
+.confirm-loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.1rem;
+  color: #888;
+}
