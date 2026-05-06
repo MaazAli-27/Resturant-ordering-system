@@ -1,222 +1,42 @@
-.menu-card {
-  background: var(--card-bg);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px var(--shadow);
-  transition: transform 0.25s, box-shadow 0.25s, background 0.3s;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--border);
-}
+.menu-card { background: var(--card-bg); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px var(--shadow); transition: transform 0.25s, box-shadow 0.25s, background 0.3s; display: flex; flex-direction: column; border: 1px solid var(--border); }
+.menu-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px var(--shadow); }
+.menu-card.unavailable { opacity: 0.7; }
+.card-image-wrap { position: relative; height: 180px; overflow: hidden; }
+.card-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.menu-card:hover .card-image { transform: scale(1.07); }
+.popular-badge { position: absolute; top: 10px; left: 10px; background: var(--accent); color: #1a1a2e; font-size: 0.72rem; font-weight: 800; padding: 4px 10px; border-radius: 20px; font-family: 'Lato', sans-serif; }
+.sold-out-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; }
+.sold-out-overlay span { background: #e74c3c; color: white; font-weight: 800; font-size: 1rem; padding: 8px 20px; border-radius: 25px; font-family: 'Lato', sans-serif; }
+.fav-btn { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.4); border: none; border-radius: 50%; width: 34px; height: 34px; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; backdrop-filter: blur(4px); }
+.fav-btn:hover { background: rgba(0,0,0,0.7); transform: scale(1.1); }
+.fav-btn.fav-active { background: rgba(255,50,50,0.3); }
+.card-body { padding: 1rem 1.2rem 1.2rem; display: flex; flex-direction: column; flex: 1; }
+.card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
+.card-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--text); margin: 0; }
+.card-price { font-family: 'Lato', sans-serif; font-size: 1.05rem; font-weight: 800; color: var(--accent); background: var(--surface2); padding: 2px 10px; border-radius: 12px; white-space: nowrap; }
+.card-desc { font-family: 'Lato', sans-serif; font-size: 0.85rem; color: var(--text2); line-height: 1.5; margin: 0 0 0.5rem; flex: 1; }
+.card-rating { display: flex; align-items: center; gap: 4px; font-size: 0.8rem; color: var(--text2); margin-bottom: 0.8rem; }
 
-.menu-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 32px var(--shadow);
-}
+/* Add to cart button with animation */
+.add-btn { width: 100%; padding: 10px; border: none; border-radius: 10px; background: var(--text); color: var(--bg); font-family: 'Lato', sans-serif; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden; }
+.add-btn:hover:not(:disabled) { opacity: 0.85; transform: scale(1.02); }
+.add-btn.in-cart { background: #27ae60; color: white; }
+.add-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+@keyframes addedPulse { 0% { transform: scale(1); } 50% { transform: scale(1.08); } 100% { transform: scale(1); } }
+.add-btn.added-anim { animation: addedPulse 0.4s ease; background: #27ae60; color: white; }
 
-.card-image-wrap {
-  position: relative;
-  height: 180px;
-  overflow: hidden;
-}
-
-.card-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s;
-}
-
-.menu-card:hover .card-image {
-  transform: scale(1.07);
-}
-
-.popular-badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: var(--accent);
-  color: #1a1a2e;
-  font-size: 0.72rem;
-  font-weight: 800;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-family: 'Lato', sans-serif;
-}
-
-.card-body {
-  padding: 1rem 1.2rem 1.2rem;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 8px;
-  margin-bottom: 6px;
-}
-
-.card-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.05rem;
-  color: var(--text);
-  margin: 0;
-}
-
-.card-price {
-  font-family: 'Lato', sans-serif;
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: var(--accent);
-  background: var(--surface2);
-  padding: 2px 10px;
-  border-radius: 12px;
-  white-space: nowrap;
-}
-
-.card-desc {
-  font-family: 'Lato', sans-serif;
-  font-size: 0.85rem;
-  color: var(--text2);
-  line-height: 1.5;
-  margin: 0 0 0.5rem;
-  flex: 1;
-}
-
-.card-rating {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 0.8rem;
-  color: var(--text2);
-  margin-bottom: 0.8rem;
-}
-
-.card-rating .stars {
-  color: #f4c542;
-}
-
-.add-btn {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  background: var(--text);
-  color: var(--bg);
-  font-family: 'Lato', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.add-btn:hover {
-  opacity: 0.85;
-  transform: scale(1.02);
-}
-
-.add-btn.in-cart {
-  background: #27ae60;
-  color: white;
-}
-
-.review-toggle-btn {
-  width: 100%;
-  margin-top: 8px;
-  padding: 7px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: transparent;
-  color: var(--text2);
-  font-family: 'Lato', sans-serif;
-  font-size: 0.82rem;
-  transition: all 0.2s;
-}
-
-.review-toggle-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.reviews-section {
-  margin-top: 10px;
-  border-top: 1px solid var(--border);
-  padding-top: 10px;
-}
-
-.review-form {
-  margin-bottom: 10px;
-}
-
-.review-input {
-  width: 100%;
-  margin-top: 6px;
-  padding: 8px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--input-bg);
-  color: var(--text);
-  font-family: 'Lato', sans-serif;
-  font-size: 0.85rem;
-  resize: none;
-  outline: none;
-}
-
-.review-submit {
-  margin-top: 6px;
-  padding: 7px 16px;
-  background: var(--accent);
-  color: #1a1a2e;
-  border: none;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 0.82rem;
-  transition: all 0.2s;
-}
-
-.review-submit:disabled {
-  opacity: 0.6;
-}
-
-.review-item {
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.review-item:last-child {
-  border-bottom: none;
-}
-
-.review-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 4px;
-}
-
-.reviewer-name {
-  font-weight: 700;
-  font-size: 0.82rem;
-  color: var(--text);
-}
-
-.review-comment {
-  font-size: 0.82rem;
-  color: var(--text2);
-  margin: 4px 0;
-}
-
-.review-date {
-  font-size: 0.72rem;
-  color: var(--text2);
-}
-
-.no-reviews {
-  font-size: 0.82rem;
-  color: var(--text2);
-  text-align: center;
-  padding: 8px 0;
-}
+/* Reviews */
+.review-toggle-btn { width: 100%; margin-top: 8px; padding: 7px; border: 1px solid var(--border); border-radius: 8px; background: transparent; color: var(--text2); font-family: 'Lato', sans-serif; font-size: 0.82rem; transition: all 0.2s; }
+.review-toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
+.reviews-section { margin-top: 10px; border-top: 1px solid var(--border); padding-top: 10px; }
+.review-form { margin-bottom: 10px; }
+.review-input { width: 100%; margin-top: 6px; padding: 8px; border: 1px solid var(--border); border-radius: 8px; background: var(--input-bg); color: var(--text); font-family: 'Lato', sans-serif; font-size: 0.85rem; resize: none; outline: none; }
+.review-submit { margin-top: 6px; padding: 7px 16px; background: var(--accent); color: #1a1a2e; border: none; border-radius: 8px; font-weight: 700; font-size: 0.82rem; transition: all 0.2s; }
+.review-submit:disabled { opacity: 0.6; }
+.review-item { padding: 8px 0; border-bottom: 1px solid var(--border); }
+.review-item:last-child { border-bottom: none; }
+.review-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.reviewer-name { font-weight: 700; font-size: 0.82rem; color: var(--text); }
+.review-comment { font-size: 0.82rem; color: var(--text2); margin: 4px 0; }
+.review-date { font-size: 0.72rem; color: var(--text2); }
+.no-reviews { font-size: 0.82rem; color: var(--text2); text-align: center; padding: 8px 0; }

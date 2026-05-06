@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MenuCard from '../components/MenuCard';
+import { SkeletonGrid } from '../components/Skeleton';
 import { getMenuItems } from '../services/api';
 import './MenuPage.css';
 
@@ -47,7 +48,7 @@ const MenuPage = () => {
           <button key={cat} className={`cat-tab ${activeCategory === cat ? 'active' : ''}`} onClick={() => setActiveCategory(cat)}>{cat}</button>
         ))}
       </div>
-      {loading && <div className="status-msg">Loading menu...</div>}
+      {loading && <SkeletonGrid count={8} />}
       {error && <div className="status-msg error">{error}</div>}
       {!loading && !error && (
         <>

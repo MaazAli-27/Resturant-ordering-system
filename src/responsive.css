@@ -1,0 +1,75 @@
+/* ── MOBILE RESPONSIVE ── */
+
+/* Navbar mobile */
+@media (max-width: 768px) {
+  .navbar { padding: 0 1rem; height: 60px; }
+  .brand-name { font-size: 1.2rem; }
+  .nav-link { display: none; }
+  .nav-user { display: none; }
+  .btn-logout { display: none; }
+  .theme-toggle { width: 30px; height: 30px; font-size: 0.9rem; }
+  .nav-cart { padding: 6px 12px; font-size: 0.85rem; }
+  .cart-label { display: none; }
+}
+
+/* Menu page mobile */
+@media (max-width: 768px) {
+  .menu-title { font-size: 2rem; }
+  .menu-hero { padding: 2rem 1rem 1.5rem; }
+  .category-tabs { padding: 1rem 0.5rem; gap: 6px; overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start; }
+  .cat-tab { white-space: nowrap; padding: 6px 14px; font-size: 0.8rem; }
+  .menu-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; padding: 0 1rem; }
+  .card-image-wrap { height: 140px; }
+  .card-name { font-size: 0.9rem; }
+  .card-price { font-size: 0.9rem; }
+  .card-desc { font-size: 0.78rem; }
+}
+
+/* Cart page mobile */
+@media (max-width: 768px) {
+  .cart-container { padding: 0 1rem; }
+  .cart-item { flex-wrap: wrap; gap: 0.5rem; }
+  .item-img { width: 55px; height: 55px; }
+  .item-subtotal { font-size: 0.9rem; }
+}
+
+/* Checkout mobile */
+@media (max-width: 768px) {
+  .checkout-grid { grid-template-columns: 1fr; }
+  .checkout-container { padding: 0 1rem; }
+  .checkout-title { font-size: 1.5rem; }
+}
+
+/* Auth page mobile */
+@media (max-width: 768px) {
+  .auth-card { padding: 2rem 1.2rem; margin: 1rem; }
+  .auth-title { font-size: 1.6rem; }
+}
+
+/* Order history mobile */
+@media (max-width: 768px) {
+  .history-container { padding: 0 1rem; }
+  .history-header { flex-direction: column; gap: 1rem; }
+  .history-card-actions { flex-wrap: wrap; }
+}
+
+/* Reservation page mobile */
+@media (max-width: 768px) {
+  .reservation-container { grid-template-columns: 1fr; padding: 0 1rem; }
+  .reservation-hero h1 { font-size: 2rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .time-slots { gap: 6px; }
+  .time-slot { font-size: 0.78rem; padding: 6px 10px; }
+}
+
+/* Confirmation page mobile */
+@media (max-width: 768px) {
+  .confirm-card { padding: 2rem 1.2rem; margin: 1rem; }
+  .tracking-steps { gap: 2px; }
+  .step-connector { width: 16px; }
+}
+
+/* Skeleton mobile */
+@media (max-width: 768px) {
+  .skeleton-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); padding: 0 1rem; }
+}
