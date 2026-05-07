@@ -1,13 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@400;700;900&display=swap');
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
+ 
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+/* ── DARK THEME (default) ── */
 body[data-theme='dark'] {
   --bg: #1a1a2e;
   --surface: #16213e;
@@ -20,9 +15,10 @@ body[data-theme='dark'] {
   --card-bg: #1e2a45;
   --navbar-bg: #0f1117;
   --input-bg: #16213e;
-  --shadow: rgba(0, 0, 0, 0.4);
+  --shadow: rgba(0,0,0,0.4);
 }
-
+ 
+/* ── LIGHT THEME ── */
 body[data-theme='light'] {
   --bg: #f7f4ef;
   --surface: #ffffff;
@@ -35,9 +31,9 @@ body[data-theme='light'] {
   --card-bg: #ffffff;
   --navbar-bg: #1a1a2e;
   --input-bg: #ffffff;
-  --shadow: rgba(0, 0, 0, 0.08);
+  --shadow: rgba(0,0,0,0.08);
 }
-
+ 
 body {
   font-family: 'Lato', sans-serif;
   background: var(--bg);
@@ -46,12 +42,82 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
   min-height: 100vh;
 }
-
-img {
-  display: block;
-  max-width: 100%;
+ 
+img { display: block; max-width: 100%; }
+button { cursor: pointer; }
+ 
+/* ── MOBILE RESPONSIVE ── */
+ 
+/* Navbar mobile */
+@media (max-width: 768px) {
+  .navbar { padding: 0 1rem; height: 60px; }
+  .brand-name { font-size: 1.2rem; }
+  .nav-link { display: none; }
+  .nav-user { display: none; }
+  .btn-logout { display: none; }
+  .theme-toggle { width: 30px; height: 30px; font-size: 0.9rem; }
+  .nav-cart { padding: 6px 12px; font-size: 0.85rem; }
+  .cart-label { display: none; }
 }
-
-button {
-  cursor: pointer;
+ 
+/* Menu page mobile */
+@media (max-width: 768px) {
+  .menu-title { font-size: 2rem; }
+  .menu-hero { padding: 2rem 1rem 1.5rem; }
+  .category-tabs { padding: 1rem 0.5rem; gap: 6px; overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start; }
+  .cat-tab { white-space: nowrap; padding: 6px 14px; font-size: 0.8rem; }
+  .menu-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; padding: 0 1rem; }
+  .card-image-wrap { height: 140px; }
+  .card-name { font-size: 0.9rem; }
+  .card-price { font-size: 0.9rem; }
+  .card-desc { font-size: 0.78rem; }
+}
+ 
+/* Cart page mobile */
+@media (max-width: 768px) {
+  .cart-container { padding: 0 1rem; }
+  .cart-item { flex-wrap: wrap; gap: 0.5rem; }
+  .item-img { width: 55px; height: 55px; }
+  .item-subtotal { font-size: 0.9rem; }
+}
+ 
+/* Checkout mobile */
+@media (max-width: 768px) {
+  .checkout-grid { grid-template-columns: 1fr; }
+  .checkout-container { padding: 0 1rem; }
+  .checkout-title { font-size: 1.5rem; }
+}
+ 
+/* Auth page mobile */
+@media (max-width: 768px) {
+  .auth-card { padding: 2rem 1.2rem; margin: 1rem; }
+  .auth-title { font-size: 1.6rem; }
+}
+ 
+/* Order history mobile */
+@media (max-width: 768px) {
+  .history-container { padding: 0 1rem; }
+  .history-header { flex-direction: column; gap: 1rem; }
+  .history-card-actions { flex-wrap: wrap; }
+}
+ 
+/* Reservation page mobile */
+@media (max-width: 768px) {
+  .reservation-container { grid-template-columns: 1fr; padding: 0 1rem; }
+  .reservation-hero h1 { font-size: 2rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .time-slots { gap: 6px; }
+  .time-slot { font-size: 0.78rem; padding: 6px 10px; }
+}
+ 
+/* Confirmation page mobile */
+@media (max-width: 768px) {
+  .confirm-card { padding: 2rem 1.2rem; margin: 1rem; }
+  .tracking-steps { gap: 2px; }
+  .step-connector { width: 16px; }
+}
+ 
+/* Skeleton mobile */
+@media (max-width: 768px) {
+  .skeleton-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); padding: 0 1rem; }
 }
