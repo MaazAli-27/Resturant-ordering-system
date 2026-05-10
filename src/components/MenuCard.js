@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { useToast } from '../context/ToastContext';
 import axios from 'axios';
 import './MenuCard.css';
 
@@ -21,6 +22,7 @@ const StarRating = ({ value, onChange, readonly }) => {
 const MenuCard = ({ item }) => {
   const { addItem, items } = useCart();
   const { user } = useAuth();
+  const toast = useToast();
   const inCart = items.find((i) => i._id === item._id);
   const [reviews, setReviews] = useState([]);
   const [avgRating, setAvgRating] = useState(0);
@@ -40,18 +42,25 @@ const MenuCard = ({ item }) => {
   }, [item._id, user]);
 
   const toggleFav = async () => {
-    if (!user) return alert('Please login to save favourites');
+    if (!user) { toast.warning('Please login to save favourites'); return; }
     const token = localStorage.getItem('token');
     try {
       const res = await API.post(`/favourites/${item._id}`, {}, { headers: { Authorization: `Bearer ${token}` } });
       setIsFav(res.data.isFavourite);
-    } catch (err) {}
+      res.data.isFavourite ? toast.success(`❤️ ${item.name} added to favourites!`) : toast.info(`💔 Removed from favourites`);
+    } catch (err) { toast.error('Failed to update favourites'); }
   };
 
-  const handleAddToCart = () => { addItem(item); setAddedAnim(true); setTimeout(() => setAddedAnim(false), 600); };
+  const handleAddToCart = () => {
+    if (!item.isAvailable) return;
+    addItem(item);
+    setAddedAnim(true);
+    setTimeout(() => setAddedAnim(false), 600);
+    toast.cart(`🛒 ${item.name} added to cart!`);
+  };
 
   const submitReview = async () => {
-    if (!user) return alert('Please login to leave a review');
+    if (!user) { toast.warning('Please login to leave a review'); return; }
     const token = localStorage.getItem('token');
     try {
       setSubmitting(true);
@@ -59,7 +68,8 @@ const MenuCard = ({ item }) => {
       setReviews(prev => [res.data.data, ...prev]);
       setAvgRating(prev => (((prev * reviews.length) + newRating) / (reviews.length + 1)).toFixed(1));
       setNewComment('');
-    } catch (err) { alert(err.response?.data?.message || 'Failed to submit review'); }
+      toast.success('Review submitted!');
+    } catch (err) { toast.error(err.response?.data?.message || 'Failed to submit review'); }
     finally { setSubmitting(false); }
   };
 
