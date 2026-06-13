@@ -1,9 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_URL } from '../config';
 
 const AuthContext = createContext();
 
-const API = axios.create({ baseURL: 'http://localhost:5000/api' });
+const API = axios.create({ baseURL: API_URL });
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -15,7 +16,10 @@ export const AuthProvider = ({ children }) => {
       API.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       API.get('/auth/me')
         .then(res => setUser(res.data.data))
-        .catch(() => localStorage.removeItem('token'))
+        .catch(() => {
+          localStorage.removeItem('token');
+          delete API.defaults.headers.common['Authorization'];
+        })
         .finally(() => setLoading(false));
     } else {
       setLoading(false);
@@ -52,3 +56,4 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
+
