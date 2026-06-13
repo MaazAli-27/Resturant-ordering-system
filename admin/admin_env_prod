@@ -1,0 +1,2 @@
+# Production - update after deployment
+REACT_APP_API_URL=https://your-backend.onrender.com/api
