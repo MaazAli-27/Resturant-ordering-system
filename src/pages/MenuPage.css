@@ -1,0 +1,39 @@
+.menu-page { min-height: 100vh; background: var(--bg); padding-bottom: 4rem; transition: background 0.3s ease; }
+
+.menu-hero { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; text-align: center; padding: 3rem 2rem 2rem; }
+.menu-title { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--accent); margin: 0 0 0.5rem; }
+.menu-subtitle { font-family: 'Lato', sans-serif; font-size: 1.1rem; color: #aaa; margin: 0 0 1.5rem; }
+
+.menu-search { max-width: 420px; margin: 0 auto; position: relative; }
+.search-bar { width: 100%; padding: 12px 44px 12px 20px; border-radius: 25px; border: none; font-family: 'Lato', sans-serif; font-size: 0.95rem; outline: none; background: rgba(255,255,255,0.12); color: white; backdrop-filter: blur(10px); transition: all 0.2s; }
+.search-bar::placeholder { color: rgba(255,255,255,0.55); }
+.search-bar:focus { background: rgba(255,255,255,0.2); box-shadow: 0 0 0 2px rgba(244,197,66,0.4); }
+.search-clear { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); background: none; border: none; color: rgba(255,255,255,0.6); font-size: 0.9rem; cursor: pointer; transition: color 0.2s; }
+.search-clear:hover { color: white; }
+
+.category-tabs { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; padding: 1.5rem 1rem; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 62px; z-index: 50; transition: background 0.3s; }
+.cat-tab { padding: 7px 18px; border-radius: 25px; border: 2px solid var(--border); background: transparent; color: var(--text2); font-family: 'Lato', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+.cat-tab:hover { border-color: var(--accent); color: var(--accent); }
+.cat-tab.active { background: var(--accent); color: #1a1a2e; border-color: var(--accent); }
+
+.menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 2rem auto 0; padding: 0 1.5rem; }
+
+.status-msg { text-align: center; padding: 3rem; font-family: 'Lato', sans-serif; font-size: 1.1rem; color: var(--text2); }
+.status-msg.error { color: #e74c3c; }
+
+.search-results { text-align: center; font-family: 'Lato', sans-serif; font-size: 0.9rem; color: var(--text2); margin: 1rem 0 0; }
+
+.load-more-wrap { display: flex; justify-content: center; margin: 2.5rem 0 1rem; }
+.btn-load-more { padding: 12px 32px; background: transparent; border: 2px solid var(--accent); color: var(--accent); border-radius: 25px; font-family: 'Lato', sans-serif; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+.btn-load-more:hover { background: var(--accent); color: #1a1a2e; transform: translateY(-2px); }
+
+.items-count { text-align: center; font-family: 'Lato', sans-serif; font-size: 0.85rem; color: var(--text2); margin: 1.5rem 0; }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .menu-title { font-size: 2rem; }
+  .menu-hero { padding: 2rem 1rem 1.5rem; }
+  .category-tabs { padding: 0.8rem 0.5rem; gap: 6px; overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start; top: 60px; }
+  .cat-tab { padding: 6px 14px; font-size: 0.8rem; }
+  .menu-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; padding: 0 1rem; margin-top: 1.5rem; }
+}
