@@ -1,3 +1,3 @@
 # Production - update these after deployment
-REACT_APP_API_URL=https://your-backend.onrender.com/api
-REACT_APP_SOCKET_URL=https://your-backend.onrender.com
+REACT_APP_API_URL=https://resturant-ordering-system-5ywj.vercel.app/api
+REACT_APP_SOCKET_URL=https://resturant-ordering-system-5ywj.vercel.app
