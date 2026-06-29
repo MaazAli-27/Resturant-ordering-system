@@ -13,9 +13,30 @@ dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
+
+// Allow any *.vercel.app subdomain for this project + explicit URLs from env
+const allowedOrigins = [
+  process.env.CLIENT_URL,
+  process.env.ADMIN_URL,
+  'http://localhost:3000',
+  'http://localhost:3001',
+].filter(Boolean);
+
+const isAllowedOrigin = (origin) => {
+  if (!origin) return true; // allow non-browser requests (curl, server-to-server)
+  if (allowedOrigins.includes(origin)) return true;
+  // Allow any preview/production deployment of your own Vercel projects
+  if (/^https:\/\/resturant-ordering-system-ekqi.*\.vercel\.app$/.test(origin)) return true;
+  if (/^https:\/\/savoria-admin.*\.vercel\.app$/.test(origin)) return true;
+  return false;
+};
+
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
+    origin: (origin, callback) => {
+      if (isAllowedOrigin(origin)) callback(null, true);
+      else callback(new Error('Not allowed by CORS'));
+    },
     methods: ['GET', 'POST']
   }
 });
@@ -24,20 +45,15 @@ app.set('io', io);
 
 // ── SECURITY MIDDLEWARE ──────────────────────────────────
 app.use(helmet({
-  contentSecurityPolicy: false, // Disable for API server
+  contentSecurityPolicy: false,
 }));
-
-// CORS - restrict to your domains
-const allowedOrigins = [
-  process.env.CLIENT_URL || 'http://localhost:3000',
-  process.env.ADMIN_URL || 'http://localhost:3001',
-];
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (isAllowedOrigin(origin)) {
       callback(null, true);
     } else {
+      console.log('Blocked by CORS:', origin);
       callback(new Error('Not allowed by CORS'));
     }
   },
@@ -46,37 +62,32 @@ app.use(cors({
 
 // ── PERFORMANCE MIDDLEWARE ───────────────────────────────
 app.use(compression());
-app.use(express.json({ limit: '10kb' })); // Limit body size
-app.use(mongoSanitize()); // Prevent NoSQL injection
+app.use(express.json({ limit: '10kb' }));
+app.use(mongoSanitize());
 
 // ── RATE LIMITING ────────────────────────────────────────
-
-// General API rate limit
 const generalLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
+  windowMs: 15 * 60 * 1000,
   max: 100,
   message: { success: false, message: 'Too many requests, please try again later.' },
   standardHeaders: true,
   legacyHeaders: false,
 });
 
-// Strict limit for auth routes
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 10, // Only 10 login attempts per 15 mins
+  max: 10,
   message: { success: false, message: 'Too many login attempts, please try again later.' },
   standardHeaders: true,
   legacyHeaders: false,
 });
 
-// Order creation limit
 const orderLimiter = rateLimit({
-  windowMs: 60 * 60 * 1000, // 1 hour
-  max: 20, // Max 20 orders per hour
+  windowMs: 60 * 60 * 1000,
+  max: 20,
   message: { success: false, message: 'Too many orders placed, please try again later.' },
 });
 
-// Promo validation limit
 const promoLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 20,
@@ -108,14 +119,12 @@ app.get('/', (req, res) => res.json({ message: '🍽️ Savoria API is running!'
 // ── ERROR HANDLER ────────────────────────────────────────
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  // Don't expose error details in production
   const message = process.env.NODE_ENV === 'production'
     ? 'Something went wrong'
     : err.message || 'Internal Server Error';
   res.status(err.status || 500).json({ success: false, message });
 });
 
-// 404 handler
 app.use('*', (req, res) => {
   res.status(404).json({ success: false, message: 'Route not found' });
 });
