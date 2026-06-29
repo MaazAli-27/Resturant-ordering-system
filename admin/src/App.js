@@ -7,6 +7,7 @@ import MenuPage from './pages/MenuPage';
 import PromoPage from './pages/PromoPage';
 import ReservationsAdminPage from './pages/ReservationsAdminPage';
 import LoginPage from './pages/LoginPage';
+import { API_URL } from './config';
 import './App.css';
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('adminToken');
     if (token) {
-      fetch('http://localhost:5000/api/auth/me', { headers: { Authorization: `Bearer ${token}` } })
+      fetch(`${API_URL}/auth/me`, { headers: { Authorization: `Bearer ${token}` } })
         .then(r => r.json())
         .then(data => { if (data.success) setUser(data.data); else localStorage.removeItem('adminToken'); })
         .catch(() => localStorage.removeItem('adminToken'))
@@ -48,3 +49,4 @@ function App() {
 }
 
 export default App;
+
